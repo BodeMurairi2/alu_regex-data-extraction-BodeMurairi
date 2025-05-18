@@ -64,3 +64,46 @@ def find_credit_card(file_data):
             print(card_numbers)
     else:
         print("No credit cards found!")
+
+#.....................................
+# Finding time
+def find_time(file_data):
+    time_regex = r"(?:[0-9]|1[0-9]|2[0-3]):[0-5][0-9](?:\s?(?:PM|AM|pm|am))?"
+    times = re.findall(time_regex, file_data)
+    if times:
+        for time in times:
+            print(time)
+    else:
+        print("No times found!")
+
+#............................................
+# Currency amount
+def find_amount(file_data):
+    """
+    This function finds all amount paid
+    """
+    amount_regex = "(?:\$|€|£|RWF|CDF)\s?[0-9]{1,3}(?:[.,][0-9]{3})*(?:[.,][0-9]{2})?"
+    amounts = re.findall(amount_regex, file_data)
+    if amounts:
+        for amount in amounts:
+            print(amount)
+    else:
+        print("No amount paid")
+
+#..................................................
+# Finding hashtags
+def find_hashtags(file_data):
+    """Find hashtags"""
+    hashtags_regex = r"\#[a-zA-Z0-9_@&%$!()=+<>]+"
+    hashtags = re.findall(hashtags_regex, file_data)
+    if hashtags:
+        for hashtag in hashtags:
+            print(hashtag)
+    else:
+        print("No hashtags")
+
+#......................................................
+# Finding html tags
+html_regex = r"<\/?[a-zA-Z][a-zA-Z0-9]*\b[^>]*\/?>"
+htmls = re.findall(html_regex, file_data)
+print(htmls)

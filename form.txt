@@ -16,6 +16,10 @@ Credit card numbers:
 Time:
 14:30 (24-hour format)
 2:30 PM (12-hour format)
+5:25 pm
+3:50 PM
+4:40 am
+
 HTML tags:
 <p>
 <div class="example">

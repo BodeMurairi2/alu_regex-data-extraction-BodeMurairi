@@ -8,7 +8,7 @@ import re
 def opened_file():
     with open("form.txt", "r") as file:
         data = file.read()
-    return data
+        return data
 
 file_data = opened_file()
 
@@ -54,15 +54,13 @@ def find_phone_number(file_data):
 
 #...................................
 # Finding credit card
+
 def find_credit_card(file_data):
-    """This function extracts all the credit card"""
-    credit_card_regex = r"^(?:\d{4})([\s-]?\d{4}){3}$"
+    """This function extracts all the credit card numbers"""
+    credit_card_regex = r"\b\d{4}[\s-]?\d{4}[\s-]?\d{4}[\s-]?\d{4}\b"
     credit_card = re.findall(credit_card_regex, file_data)
     if credit_card:
         for card_numbers in credit_card:
             print(card_numbers)
     else:
         print("No credit cards found!")
-        print(credit_card)
-
-find_credit_card(file_data)

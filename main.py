@@ -82,7 +82,7 @@ def find_amount(file_data):
     """
     This function finds all amount paid
     """
-    amount_regex = "(?:\$|€|£|RWF|CDF)\s?[0-9]{1,3}(?:[.,][0-9]{3})*(?:[.,][0-9]{2})?"
+    amount_regex = r"(?:\$|€|£|RWF|CDF)\s?[0-9]{1,3}(?:[.,][0-9]{3})*(?:[.,][0-9]{2})?"
     amounts = re.findall(amount_regex, file_data)
     if amounts:
         for amount in amounts:
@@ -118,6 +118,7 @@ if __name__ == "__main__":
     while True:
         # open the file
         file_data = opened_file()
+        print("____________________________________________\n")
         print("Welcome to our Regex pattern matching plateform\n")
         print("Here you can extract contents in your file\n")
         print("________________________________________")
@@ -125,7 +126,7 @@ if __name__ == "__main__":
         print("2.Find urls inside your file")
         print("3.Find phone numbers inside your file")
         print("4.Find credit cards inside your file")
-        print("5.Find a/ll the times")
+        print("5.Find all the times")
         print("6.Find amount/currency inside your file")
         print("7.Find hashtags inside your file")
         print("8.Find htmls tags inside your file")
@@ -135,33 +136,42 @@ if __name__ == "__main__":
         choice = int(input("Enter your choice between 1-9:\n"))
         
         if choice == 1:
-            print("All Emails inside your file:\n")
+            print("All Emails:\n")
             time.sleep(1)
             find_email(file_data)
         elif choice == 2:
-            print("All urls inside your file")
+            print("All urls inside your file:")
             time.sleep(1)
             find_url(file_data)
+
         elif choice == 3:
-            print("All phone numbers inside your file")
+            print("All phone numbers inside your file:")
             time.sleep(1)
             find_phone_number(file_data)
         elif choice == 4:
-
+            print("All credits cards:\n")
+            time.sleep(1)
+            find_credit_card(file_data)
         elif choice == 5:
-
+            print("All the times:\n")
+            time.sleep(1)
+            find_time(file_data)
         elif choice == 6:
-
+            print("All amounts:\n")
+            time.sleep(1)
+            find_amount(file_data)
         elif choice == 7:
-
+            print("Find all hashtags:\n")
+            time.sleep(1)
+            find_hashtags(file_data)
         elif choice == 8:
-
-        elif choice > 9:
-            print("Exiting the application...\n")
+            print("All html tags:\n")
+            time.sleep(1)
+            find_htmls(file_data)
+        elif choice == 9:
+            print("Exiting✅🎉 the application...\n")
             time.sleep(1)
             break
-
         else:
-            print("Error! Please enter a valid number between 1-9 not decimal nor letters")
+            print("Error!❌ Please enter a valid number between 1-9 not decimal nor letters")
             continue
-        

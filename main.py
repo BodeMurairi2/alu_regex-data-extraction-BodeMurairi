@@ -1,177 +1,225 @@
 #!/usr/bin/env python3
 """
-This module uses regular expression to extract data
+This module uses regular expressions to extract data.
 """
+
 import re
 import time
 
 
-# open form.txt
-def opened_file():
+# Open form.txt
+
+
+def read_file():
+    """Read content of form.txt and save
+       inside data
+    """
     with open("form.txt", "r") as file:
         data = file.read()
         return data
 
-#............................
+
 # Finding emails
-def find_email(file_data):
-    # email regex form to extract all emails
-    email_regex = r"\b[a-zA-Z0-9._]+@[a-zA-Z]+\.[a-zA-Z0-9._]{2,}\b"
 
-    """This function display all the emails found"""
-    email_match = re.findall(email_regex, file_data)
-    if email_match:
-        for emails in email_match:
-            print(emails)
+
+def find_emails(content):
+    """
+    Print all emails found.
+    """
+    # Email regex form to extract all emails
+    email_regex = r"\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\b"
+    emails = re.findall(email_regex, content)
+    if emails:
+        for email in emails:
+            print(email)
     else:
-        print("No email founds")
+        print("No emails found")
 
-#.........................................
-#  Finding URL
-def find_url(file_data):
+
+# Finding URL
+
+
+def find_urls(content):
     """
-    This function find all the urls inside form.txt
+    Print all urls found.
     """
-    url_regex = r"https?:\/\/(?:www\.)?[a-zA-Z0-9?.\-_*+#*]+\.[a-zA-Z]{2,}(?:\/\S*)?"
-    url_match = re.findall(url_regex, file_data)
-    if url_match:
-        for url in url_match:
+    url_regex = (r"https?:\/\/(?:www\.)?[a-zA-Z0-9?.\-_*+#*]+\."
+                 r"[a-zA-Z]{2,}(?:\/\S*)?")
+    urls = re.findall(url_regex, content)
+    if urls:
+        for url in urls:
             print(url)
     else:
-        print("No Urls found")
+        print("No URLs found")
 
-#.............................
+
 # Finding phone number
-def find_phone_number(file_data):
-    """This function returns all the phone numbers"""
+
+
+def find_phone_numbers(content):
+    """
+    Print all phone numbers found.
+    """
     phone_number_regex = r"\+?(?:\(\d{3}\)|\d{3})[\s.-]?\d{3}[\s.-]?\d{4}"
-    phone_numbers = re.findall(phone_number_regex, file_data)
+    phone_numbers = re.findall(phone_number_regex, content)
     if phone_numbers:
-        for numbers in phone_numbers:
-            print(numbers)
+        for phone_number in phone_numbers:
+            print(phone_number)
     else:
         print("No phone numbers found!")
 
-#...................................
+
 # Finding credit card
 
-def find_credit_card(file_data):
-    """This function extracts all the credit card numbers"""
+
+def find_credit_cards(content):
+    """
+    Print all credit cards found.
+    """
     credit_card_regex = r"\b\d{4}[\s-]?\d{4}[\s-]?\d{4}[\s-]?\d{4}\b"
-    credit_card = re.findall(credit_card_regex, file_data)
-    if credit_card:
-        for card_numbers in credit_card:
+    credit_cards = re.findall(credit_card_regex, content)
+    if credit_cards:
+        for card_numbers in credit_cards:
             print(card_numbers)
     else:
         print("No credit cards found!")
 
-#.....................................
+
 # Finding time
-def find_time(file_data):
+
+
+def find_times(content):
+    """
+    Print all the times found.
+    """
     time_regex = r"(?:[0-9]|1[0-9]|2[0-3]):[0-5][0-9](?:\s?(?:PM|AM|pm|am))?"
-    times = re.findall(time_regex, file_data)
+    times = re.findall(time_regex, content)
     if times:
-        for time in times:
-            print(time)
+        for time_str in times:
+            print(time_str)
     else:
         print("No times found!")
 
-#............................................
+
 # Currency amount
-def find_amount(file_data):
+
+
+def find_amounts(content):
     """
-    This function finds all amount paid
+    Print all amounts found.
     """
-    amount_regex = r"(?:\$|€|£|RWF|CDF)\s?[0-9]{1,3}(?:[.,][0-9]{3})*(?:[.,][0-9]{2})?"
-    amounts = re.findall(amount_regex, file_data)
+    amount_regex = r"(?:\$|€|£|RWF|CDF)\s?[0-9]{1,3}" \
+                   r"(?:[.,][0-9]{3})*(?:[.,][0-9]{2})?"
+    amounts = re.findall(amount_regex, content)
     if amounts:
         for amount in amounts:
             print(amount)
     else:
         print("No amount paid")
 
-#..................................................
+
 # Finding hashtags
-def find_hashtags(file_data):
-    """Find hashtags"""
+
+
+def find_hashtags(content):
+    """
+    print all hashtags found.
+    """
     hashtags_regex = r"\#[a-zA-Z0-9_@&%$!()=+<>]+"
-    hashtags = re.findall(hashtags_regex, file_data)
+    hashtags = re.findall(hashtags_regex, content)
     if hashtags:
         for hashtag in hashtags:
             print(hashtag)
     else:
         print("No hashtags")
 
-#......................................................
-# Finding html tags
-def find_htmls(file_data):
+
+# Finding HTML tags
+
+
+def find_html_tags(content):
+    """
+    print all HTML tags found.
+    """
     html_regex = r"<\/?[a-zA-Z][a-zA-Z0-9]*\b[^>]*\/?>"
-    htmls = re.findall(html_regex, file_data)
-    if htmls:
-        for html in htmls:
-            print(html)
+    html_tags = re.findall(html_regex, content)
+    if html_tags:
+        for tag in html_tags:
+            print(tag)
     else:
-        print("No htmls tags found")
+        print("No HTML tags found")
+
 
 if __name__ == "__main__":
-    """Running the application"""
     while True:
-        # open the file
-        file_data = opened_file()
+        # Open the file
+        content = read_file()
         print("____________________________________________\n")
-        print("Welcome to our Regex pattern matching plateform\n")
+        print("Welcome to our Regex pattern matching platform\n")
         print("Here you can extract contents in your file\n")
         print("________________________________________")
-        print("1.Find Emails inside your file")
-        print("2.Find urls inside your file")
-        print("3.Find phone numbers inside your file")
-        print("4.Find credit cards inside your file")
-        print("5.Find all the times")
-        print("6.Find amount/currency inside your file")
-        print("7.Find hashtags inside your file")
-        print("8.Find htmls tags inside your file")
-        print("9.Exit!")
+        print("1. Find Emails inside your file")
+        print("2. Find URLs inside your file")
+        print("3. Find phone numbers inside your file")
+        print("4. Find credit cards inside your file")
+        print("5. Find all the times")
+        print("6. Find amount/currency inside your file")
+        print("7. Find hashtags inside your file")
+        print("8. Find HTML tags inside your file")
+        print("9. Exit!")
         print("___________________________________________")
-        
-        choice = int(input("Enter your choice between 1-9:\n"))
-        
+
+        prompt = "Enter your choice between 1-9:\n"
+        choice = input(prompt)
+
+        if not choice.isdigit() or not (1 <= int(choice) <= 9):
+            print("Error!❌ Please enter a valid number between 1-9,"
+                  "no decimals or letters")
+            continue
+
+        choice = int(choice)
+
         if choice == 1:
             print("All Emails:\n")
             time.sleep(1)
-            find_email(file_data)
+            find_emails(content)
+
         elif choice == 2:
-            print("All urls inside your file:")
+            print("All URLs inside your file:")
             time.sleep(1)
-            find_url(file_data)
+            find_urls(content)
 
         elif choice == 3:
             print("All phone numbers inside your file:")
             time.sleep(1)
-            find_phone_number(file_data)
+            find_phone_numbers(content)
+
         elif choice == 4:
-            print("All credits cards:\n")
+            print("All credit cards:\n")
             time.sleep(1)
-            find_credit_card(file_data)
+            find_credit_cards(content)
+
         elif choice == 5:
             print("All the times:\n")
             time.sleep(1)
-            find_time(file_data)
+            find_times(content)
+
         elif choice == 6:
             print("All amounts:\n")
             time.sleep(1)
-            find_amount(file_data)
+            find_amounts(content)
+
         elif choice == 7:
             print("Find all hashtags:\n")
             time.sleep(1)
-            find_hashtags(file_data)
+            find_hashtags(content)
+
         elif choice == 8:
-            print("All html tags:\n")
+            print("All HTML tags:\n")
             time.sleep(1)
-            find_htmls(file_data)
+            find_html_tags(content)
+
         elif choice == 9:
             print("Exiting✅🎉 the application...\n")
             time.sleep(1)
             break
-        else:
-            print("Error!❌ Please enter a valid number between 1-9 not decimal nor letters")
-            continue

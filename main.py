@@ -4,12 +4,9 @@ This module uses regular expressions to extract data.
 """
 
 import re
-import time
 
 
 # Open form.txt
-
-
 def read_file():
     """Read content of form.txt and save
        inside data
@@ -20,8 +17,6 @@ def read_file():
 
 
 # Finding emails
-
-
 def find_emails(content):
     """
     Print all emails found.
@@ -37,8 +32,6 @@ def find_emails(content):
 
 
 # Finding URL
-
-
 def find_urls(content):
     """
     Print all urls found.
@@ -54,8 +47,6 @@ def find_urls(content):
 
 
 # Finding phone number
-
-
 def find_phone_numbers(content):
     """
     Print all phone numbers found.
@@ -70,8 +61,6 @@ def find_phone_numbers(content):
 
 
 # Finding credit card
-
-
 def find_credit_cards(content):
     """
     Print all credit cards found.
@@ -86,8 +75,6 @@ def find_credit_cards(content):
 
 
 # Finding time
-
-
 def find_times(content):
     """
     Print all the times found.
@@ -102,8 +89,6 @@ def find_times(content):
 
 
 # Currency amount
-
-
 def find_amounts(content):
     """
     Print all amounts found.
@@ -119,8 +104,6 @@ def find_amounts(content):
 
 
 # Finding hashtags
-
-
 def find_hashtags(content):
     """
     print all hashtags found.
@@ -135,8 +118,6 @@ def find_hashtags(content):
 
 
 # Finding HTML tags
-
-
 def find_html_tags(content):
     """
     print all HTML tags found.
@@ -152,8 +133,7 @@ def find_html_tags(content):
 
 if __name__ == "__main__":
     while True:
-        # Open the file
-        content = read_file()
+        content = read_file()  # open the file
         print("____________________________________________\n")
         print("Welcome to our Regex pattern matching platform\n")
         print("Here you can extract contents in your file\n")
@@ -181,45 +161,36 @@ if __name__ == "__main__":
 
         if choice == 1:
             print("All Emails:\n")
-            time.sleep(1)
             find_emails(content)
 
         elif choice == 2:
             print("All URLs inside your file:")
-            time.sleep(1)
             find_urls(content)
 
         elif choice == 3:
             print("All phone numbers inside your file:")
-            time.sleep(1)
             find_phone_numbers(content)
 
         elif choice == 4:
             print("All credit cards:\n")
-            time.sleep(1)
             find_credit_cards(content)
 
         elif choice == 5:
             print("All the times:\n")
-            time.sleep(1)
             find_times(content)
 
         elif choice == 6:
             print("All amounts:\n")
-            time.sleep(1)
             find_amounts(content)
 
         elif choice == 7:
             print("Find all hashtags:\n")
-            time.sleep(1)
             find_hashtags(content)
 
         elif choice == 8:
             print("All HTML tags:\n")
-            time.sleep(1)
             find_html_tags(content)
 
         elif choice == 9:
             print("Exiting✅🎉 the application...\n")
-            time.sleep(1)
             break
